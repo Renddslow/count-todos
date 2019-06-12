@@ -22,7 +22,7 @@ module.exports = (filePath, options) => {
 	];
 
 	const searchCmd = [
-		`todo:\\s`,
+		`'todo:\\s'`,
 		path,
 		'| wc -l',
 	];
