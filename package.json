@@ -7,5 +7,11 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "cross-spawn": "^6.0.5"
-  }
+  },
+  "author": {
+    "name": "Matt McElwee",
+    "email": "mubatt@wyopub.com",
+    "url": "mattmcelwee.com"
+  },
+  "repository": "Renddslow/count-todos"
 }
