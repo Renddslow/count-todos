@@ -17,12 +17,12 @@ module.exports = (filePath, options) => {
 	];
 	const baseCmd = [
 		'grep',
-		'-R',
+		'-Ry',
 		`--exclude-dir={${dirExclusions.join(',')}}`,
 	];
 
 	const searchCmd = [
-		`'TODO'`,
+		`todo:\\s`,
 		path,
 		'| wc -l',
 	];
