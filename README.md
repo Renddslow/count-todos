@@ -17,6 +17,19 @@ console.log(countTodos());
 
 ## API
 
+count-todos expects that your `TODO` comments are followed by a colon and a whitespace character. Examples of TODO's that will match:
+
+```
+// TODO: This thing needs fixing
+
+/* Todo: Fix this thing */
+
+/**
+  * todo: This is a problem
+  *
+  **/ 
+```
+
 ### countTodos([filePath], [options])
 Returns a `number` based on a grep of the repository excluding by default `node_modules`, `flow-typed`, `.idea`, `.vscode`, and `.git`.
 
