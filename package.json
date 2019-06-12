@@ -1,6 +1,6 @@
 {
   "name": "count-todos",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Count the number of todo's in a repository",
   "main": "index.js",
   "license": "MIT",
