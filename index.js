@@ -40,18 +40,18 @@ module.exports = (filePath, options) => {
 	}
 	var diff = [];
 	const resultBuffer = execSync(cmd);
-	const other_cmd = "grep -inRw -E 'TODO' . --exclude-dir={node_modules,test}"
+	const other_cmd = `grep -inRw -E 'TODO' . --exclude-dir={${dirExclusions.join(',')}}`
 	const foo = function(cb){
-		exec(other_cmd, (err, stdout, stderr) => {
+		exec(other_cmd, {maxBuffer: 1024 * 50000}, (err, stdout, stderr) => {
 			if (err) {
 				console.error(`exec error: ${err}`);
 				return cb(err);
 			}
-			cb(null, {stdout,stderr});
+			cb(null, stdout);
 		});
 	}
 
-	foo(function(err, {stdout,stderr}) {
+	foo(function(err, stdout) {
 		if (err) {
 			console.log("ERROR in foo");
 			return;
@@ -63,9 +63,10 @@ module.exports = (filePath, options) => {
 			const today = new Date();
 			diff.push(Math.round(Math.abs((newDate.getTime() - today.getTime())/(oneDay))));
 		});
+		const filtered = diff.filter((item) => item);
 		const reducer = (accumulator, currentValue) => accumulator + currentValue;
-		const average = diff.reduce(reducer) / diff.length;
-		console.log(`Average age of TODO: ${average}`);
+		const average = filtered.reduce(reducer) / filtered.length;
+		console.log(`Average age of TODO: ${average} days`);
  });
 
 	const resultRaw = resultBuffer && resultBuffer.toString();
